@@ -1,24 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { Provider } from 'react-redux'
+import { createStore } from "redux";
+
+import Counter from "./conter"
+import reducer from "./reducer";
+import AddTodo from './components/AddTodo';
+import TodoList from './components/TodoList';
 
 function App() {
+  const [count, setCount] = useState(0)
+
+
+
+  const store = createStore(reducer)
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ textAlign: "center", marginTop: "25%" }}>
+      <Provider store={store}>
+        <AddTodo />
+        <TodoList />
+      </Provider>
     </div>
+
   );
 }
 
